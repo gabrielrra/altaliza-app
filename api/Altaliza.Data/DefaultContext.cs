@@ -19,6 +19,7 @@ namespace Altaliza.Data
         }
 
         public virtual DbSet<Categoria> Categorias { get; set; }
+        public virtual DbSet<EfmigrationsHistory> EfmigrationsHistories { get; set; }
         public virtual DbSet<Personagem> Personagems { get; set; }
         public virtual DbSet<PersonagemVeiculo> PersonagemVeiculos { get; set; }
         public virtual DbSet<Veiculo> Veiculos { get; set; }
@@ -45,6 +46,20 @@ namespace Altaliza.Data
                 entity.Property(e => e.Nome)
                     .IsRequired()
                     .HasMaxLength(100);
+            });
+
+            modelBuilder.Entity<EfmigrationsHistory>(entity =>
+            {
+                entity.HasKey(e => e.MigrationId)
+                    .HasName("PRIMARY");
+
+                entity.ToTable("__EFMigrationsHistory");
+
+                entity.Property(e => e.MigrationId).HasMaxLength(150);
+
+                entity.Property(e => e.ProductVersion)
+                    .IsRequired()
+                    .HasMaxLength(32);
             });
 
             modelBuilder.Entity<Personagem>(entity =>

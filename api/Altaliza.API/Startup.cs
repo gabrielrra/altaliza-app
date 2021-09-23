@@ -8,6 +8,7 @@ using Microsoft.OpenApi.Models;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Design;
 using Altaliza.Data;
+using System.Text.Json.Serialization;
 
 namespace Altaliza.API
 {
@@ -33,6 +34,8 @@ namespace Altaliza.API
             );
 
             services.AddControllers();
+
+
             services.AddSwaggerGen(c =>
             {
                 c.SwaggerDoc("v1", new OpenApiInfo { Title = "Altaliza.API", Version = "v1" });
