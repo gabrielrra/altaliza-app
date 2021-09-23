@@ -4,7 +4,7 @@ import Head from 'next/head'
 import Link from 'next/link'
 
 import { Container } from '../styles/pages/Home'
-import LinkButton from '../components/LinkButton'
+import Button from '../components/Button'
 
 const Home: React.FC = () => {
   return (
@@ -16,7 +16,13 @@ const Home: React.FC = () => {
       <h1>Altaliza</h1>
       <p>Aluguel de carros, simplificado</p>
 
-      <LinkButton href="login" text="Começar !"></LinkButton>
+      <hr />
+      <Link href="register">
+        <Button text="Criar novo usuário"/>
+      </Link>
+      <Link href="login">
+        <Button text="Já tenho um usuário" />
+      </Link>
 
     </Container>
   )

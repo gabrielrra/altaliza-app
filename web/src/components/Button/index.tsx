@@ -9,7 +9,7 @@ import { Container, RoundButton } from './styles'
 interface Props {
   text: string;
   disabled?: boolean;
-  onClick: () => void;
+  onClick?: () => void;
 }
 
 const Button: React.FC<Props> = ({text, disabled, onClick}) => {

@@ -8,6 +8,7 @@ export const Container = styled.div`
   justify-content: center;
   align-items: center;
   flex-direction: column;
+  overflow: auto;
 
   h1 {
     font-size: 54px;
