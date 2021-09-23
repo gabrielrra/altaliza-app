@@ -27,4 +27,9 @@ export const FormContainer = styled.div`
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
+  margin-bottom: 14px;
+
+  span {
+    font-size: 14px;
+  }
 `

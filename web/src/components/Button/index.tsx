@@ -1,13 +1,24 @@
 import React from 'react'
+
 import Head from 'next/head'
+import Link from 'next/link'
 
 
+import { Container, RoundButton } from './styles'
 
-const Button: React.FC = () => {
+interface Props {
+  text: string;
+  disabled?: boolean;
+  onClick: () => void;
+}
+
+const Button: React.FC<Props> = ({text, disabled, onClick}) => {
   return (
-    <div onClick={() => console.log('a')}>
-
-    </div>
+    <Container>
+        <RoundButton onClick={onClick} disabled={disabled}>
+          {text}
+        </RoundButton>
+    </Container>
   )
 }
 

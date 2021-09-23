@@ -10,7 +10,7 @@ export const Container = styled.div`
 export const MainInput = styled.input`
   border: 1px solid ${props => props.theme.colors.primary};
   border-radius: 4px;
-  padding: 4px;
+  padding: 8px;
   background: transparent;
   color: ${props => props.theme.colors.text};
   margin-top: 8px;

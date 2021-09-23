@@ -12,7 +12,13 @@ export const RoundButton = styled.button`
   color: ${props => props.theme.colors.text};
   font-size: 1.2rem;
 
-  cursor: pointer;
+  cursor: ${props => props.disabled ? 'not-allowed' : 'pointer'};
 
+  :hover{
+    opacity: ${props => props.disabled ? 0.5 : 0.8};
+    transform: scale(${props => props.disabled ? 1 : 1.02});
+  }
+  opacity: ${props => props.disabled ? 0.5 : 1};
 
+  transition-duration: 0.2s;
 `;

@@ -18,17 +18,26 @@ namespace Altaliza.API.Controllers
         {
             myDbContext = context;
         }
+
         /// <summary>
-        /// Busca todos os usuários cadastrados
+        /// Busca um usuário cadastrado. Se nenhum usuário for informado a api buscará todos os usuários
         /// </summary>
+        /// <param name="username">Nome do usuário para a busca</param>
         /// <response code="400">Bad Request</response>
         /// <response code="500">Internal Server Error</response>
         [ProducesResponseType(typeof(List<Personagem>), 200)]
         [HttpGet("")]
-        public async Task<List<Personagem>> Get()
+        public async Task<List<Personagem>> Get(string username)
         {
-            return await myDbContext.Personagems.ToListAsync();
+            if(username != "")
+            {
+                return await myDbContext.Personagems.Where(user => user.Nome == username).ToListAsync();
+            } else
+            {
+                return await myDbContext.Personagems.ToListAsync();
+            }
         }
+
         /// <summary>
         /// Busca um usuário dado o id
         /// </summary>
@@ -42,18 +51,29 @@ namespace Altaliza.API.Controllers
             return await myDbContext.Personagems.FindAsync(id);
         }
 
-
         /// <summary>
-        /// Busca um usuário pelo nome
+        /// Adiciona um novo usuário
         /// </summary>
-        /// <param name="username">Nome do usuário para a busca</param>
+        /// <param name="user">Novo usuário a ser adicionado</param>
         /// <response code="400">Bad Request</response>
         /// <response code="500">Internal Server Error</response>
         [ProducesResponseType(typeof(Personagem), 200)]
-        [HttpGet("")]
-        public async Task<Personagem> GetUserByName(string username)
+        [HttpPost("")]
+        public async Task<Personagem> CreateUser(Personagem user)
         {
-            return await myDbContext.Personagems.Where(user => user.Nome == username).FirstOrDefaultAsync();
+
+            try
+            {
+                myDbContext.Personagems.Add(user);
+                myDbContext.SaveChanges();
+                return await myDbContext.Personagems.Where(u => u.Nome == user.Nome).FirstOrDefaultAsync();
+            }
+            catch (System.Exception)
+            {
+
+                throw;
+            }
         }
+
     }
 }
